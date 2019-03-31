@@ -80,7 +80,6 @@ def clean_data():
     combined_df.to_csv(combined_file,index=False)
 
 def compare_by_eye():
-    # TODO fix this so it properly references the IDs from the embedding    
     train_corpus = list(read_corpus(combined_file))
     test_corpus = list(read_corpus(brunet_file, tokens_only=True))
     doc_id = random.randint(0, len(test_corpus) - 1)
@@ -101,10 +100,14 @@ if __name__ == "__main__":
     brunet = pd.read_csv(brunet_file)
     d2v = doc2vec.Doc2Vec.load(fname)
     compare_by_eye()
+    
+    # uncomment to train D2V
     # x_train, x_test, y_train, y_test, all_data = model.read_dataset('/Users/nernst/Documents/projects/design-detect/sotorrent/combined.csv')
     # classifier = model.train_classifier(d2v,x_train,y_train)
     # # replace test with brunet
     # model.test_classifier(d2v,classifier,brunet.discussion, brunet.label)
+    
+    
     # # now try zeroR
     # clf = DummyClassifier(strategy='most_frequent', random_state=0)
     # clf.fit(x_train, y_train) #??

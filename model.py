@@ -13,8 +13,8 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 
 
 def read_dataset(path):
-    dataset = pd.read_csv(path, header=0, delimiter="\t")
-    x_train, x_test, y_train, y_test = train_test_split(dataset.review, dataset.sentiment, random_state=0, test_size=0.1)
+    dataset = pd.read_csv(path, header=0, delimiter=",")
+    x_train, x_test, y_train, y_test = train_test_split(dataset.discussion, dataset.label, random_state=0, test_size=0.1)
     x_train = label_sentences(x_train, 'Train')
     x_test = label_sentences(x_test, 'Test')
     all_data = x_train + x_test
@@ -101,7 +101,7 @@ def test_classifier(d2v, classifier, testing_vectors, testing_labels):
 
 
 if __name__ == "__main__":
-    x_train, x_test, y_train, y_test, all_data = read_dataset('dataset.csv')
+    x_train, x_test, y_train, y_test, all_data = read_dataset('/Users/nernst/Documents/projects/design-detect/sotorrent/combined.csv')
     d2v_model = train_doc2vec(all_data)
     classifier = train_classifier(d2v_model, x_train, y_train)
     test_classifier(d2v_model, classifier, x_test, y_test)

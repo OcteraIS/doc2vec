@@ -11,7 +11,6 @@ from sklearn.metrics import accuracy_score, f1_score
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
-
 def read_dataset(path):
     dataset = pd.read_csv(path, header=0, delimiter=",")
     x_train, x_test, y_train, y_test = train_test_split(dataset.discussion, dataset.label, random_state=0, test_size=0.1)
@@ -19,7 +18,6 @@ def read_dataset(path):
     x_test = label_sentences(x_test, 'Test')
     all_data = x_train + x_test
     return x_train, x_test, y_train, y_test, all_data
-
 
 def label_sentences(corpus, label_type):
     """
